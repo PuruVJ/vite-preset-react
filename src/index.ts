@@ -1,8 +1,15 @@
 // @ts-check
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import { Plugin } from "vite";
+import { reactDevtoolsPlugin } from "./devtools";
 
-export default function preactPlugin(): Plugin[] {
+type ReactPresetPlugin = {
+  removeDevtoolsInProd?: boolean;
+};
+
+export default function reactPlugin({
+  removeDevtoolsInProd = false,
+}: ReactPresetPlugin = {}): Plugin[] {
   return [
     {
       name: "react:config",
@@ -15,5 +22,6 @@ export default function preactPlugin(): Plugin[] {
       },
     },
     reactRefresh(),
+    reactDevtoolsPlugin({ removeInProd: removeDevtoolsInProd }),
   ];
 }

@@ -6,6 +6,7 @@ Features:
 
 - Sets up Hot Module Replacement via [@vitejs/plugin-react-refresh](https://www.npmjs.com/package/@vitejs/plugin-react-refresh)
 - Automatically injects `React` into your components, so you don't have to `import React from 'react'` in every file.
+- Remove devtools in production if needed
 
 ## Installation
 
@@ -30,7 +31,19 @@ export default defineConfig({
 
 ## Options
 
-No options currently, though conditional removal of devtools in production is in the roadmap.
+Options can be passed to our preset plugin via the first argument:
+
+```ts
+export default defineConfig({
+  plugins: [react({ removeDevtoolsInProd: true })],
+});
+```
+
+### Available options
+
+| Option                 | Type      | Default | Description                                |
+| ---------------------- | --------- | ------- | ------------------------------------------ |
+| `removeDevtoolsInProd` | `boolean` | `false` | Removes React Devtools in production build |
 
 ## Errors
 
