@@ -45,6 +45,28 @@ export default defineConfig({
 | ---------------------- | --------- | ------- | ------------------------------------------ |
 | `removeDevtoolsInProd` | `boolean` | `false` | Removes React Devtools in production build |
 
+## Using in official starter templates
+
+If you are using the official `react` or `react-ts` template, and wanna switch to this one, follow this:
+
+1. Remove `@vitejs/plugin-react-refresh` from `package.json`.
+
+2. Install this preset:
+
+```sh
+npm install -D vite-preset-react
+```
+
+Or if you're a Yarn person
+
+```sh
+yarn add -D vite-preset-react
+```
+
+3. If you're using `react-ts` template, open `tsconfig.json`, and change `jsx` field to `preserve`.
+
+There!! You're all set!
+
 ## Errors
 
 ## 1. Getting a blank page with error: `Uncaught SyntaxError: Identifier 'React' has already been declared`
