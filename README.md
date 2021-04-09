@@ -18,7 +18,7 @@ npm install --save-dev vite-preset-react
 yarn add -D vite-preset-react
 ```
 
-Enhance your vite config with the Preact preset plugin in your `vite.config.ts` or `vite.config.js`:
+Enhance your vite config with the React preset plugin in your `vite.config.ts` or `vite.config.js`:
 
 ```js
 import { defineConfig } from "vite";
