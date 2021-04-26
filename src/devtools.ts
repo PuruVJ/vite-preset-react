@@ -1,5 +1,3 @@
-import debug from "debug";
-import kl from "kolorist";
 import { Plugin } from "vite";
 
 export interface reactDevtoolsPluginOptions {
@@ -8,8 +6,6 @@ export interface reactDevtoolsPluginOptions {
 export function reactDevtoolsPlugin({
   removeInProd = false,
 }: reactDevtoolsPluginOptions = {}): Plugin {
-  const log = debug("vite:react-devtools");
-
   const plugin: Plugin = {
     name: "react:devtools",
 
@@ -22,7 +18,6 @@ export function reactDevtoolsPlugin({
     transformIndexHtml(code) {
       if (removeInProd) {
         code += `<script>window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};</script>`;
-        log(`${kl.cyan("[remove] React devtools")}`);
       }
       return code;
     },
