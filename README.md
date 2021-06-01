@@ -35,15 +35,16 @@ Options can be passed to our preset plugin via the first argument:
 
 ```ts
 export default defineConfig({
-  plugins: [react({ removeDevtoolsInProd: true })],
+  plugins: [react({ removeDevtoolsInProd: true, injectReact: true })],
 });
 ```
 
 ### Available options
 
-| Option                 | Type      | Default | Description                                |
-| ---------------------- | --------- | ------- | ------------------------------------------ |
-| `removeDevtoolsInProd` | `boolean` | `false` | Removes React Devtools in production build |
+| Option                 | Type      | Default | Description                                                                                       |
+| ---------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `removeDevtoolsInProd` | `boolean` | `false` | Removes React Devtools in production build                                                        |
+| `injectReact`          | `boolean` | `true`  | Injects `import React from 'react'` in every JS file to avoid importing it in every file manually |
 
 ## Using in official starter templates
 
@@ -69,9 +70,16 @@ There!! You're all set!
 
 ## Errors
 
-## 1. Getting a blank page with error: `Uncaught SyntaxError: Identifier 'React' has already been declared`
+## Identifier 'React' has already been declared
 
-Its because `React` has already been imported behind the scenes into your component. Remove any `import React from 'react'` from your components.
+This error occurs when manually import `React` in a file, with the config option `injectReact` set to `true`.
+
+Solution would be to remove the import if it is the only file in the whole codebase importing `React`.
+Or you can set `injectReact` option to `false`. This will suppress this error and allow you to import `React` in every file.
+
+## Uncaught ReferenceError: React is not defined
+
+This error arises when you have the option `injectReact` set to `false`, but you're not importing `React` in some of your files. Solution would be to set this option to `true`; Or put an `import React from 'react'` statement in every file containing JSX code.
 
 ## Not importing React doesn't allow JSX in TSX files
 

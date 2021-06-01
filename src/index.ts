@@ -4,11 +4,16 @@ import { Plugin } from "vite";
 import { reactDevtoolsPlugin } from "./devtools";
 
 type ReactPresetPlugin = {
+  /** Disabled React devtools in production */
   removeDevtoolsInProd?: boolean;
+
+  /** Inject `React` into every file to not declare `import React from 'react';` everywhere */
+  injectReact?: boolean;
 };
 
 export default function reactPlugin({
   removeDevtoolsInProd = false,
+  injectReact = true,
 }: ReactPresetPlugin = {}): Plugin[] {
   return [
     {
@@ -16,7 +21,7 @@ export default function reactPlugin({
       config() {
         return {
           esbuild: {
-            jsxInject: `import React from 'react'`,
+            ...(injectReact ? { jsxInject: `import React from 'react'` } : {}),
           },
         };
       },
