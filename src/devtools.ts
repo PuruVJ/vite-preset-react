@@ -3,6 +3,7 @@ import { Plugin } from "vite";
 export interface reactDevtoolsPluginOptions {
   removeInProd?: boolean;
 }
+
 export function reactDevtoolsPlugin({
   removeInProd = false,
 }: reactDevtoolsPluginOptions = {}): Plugin {
@@ -17,7 +18,16 @@ export function reactDevtoolsPlugin({
 
     transformIndexHtml(code) {
       if (removeInProd) {
-        code += `<script>window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};</script>`;
+        return {
+          html: code,
+          tags: [
+            {
+              injectTo: "body",
+              tag: `script`,
+              children: `window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};`,
+            },
+          ],
+        };
       }
       return code;
     },
