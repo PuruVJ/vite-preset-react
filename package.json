@@ -8,7 +8,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite demo",
-    "build": "rimraf dist/ && tsup src/index.ts --dts --sourcemap --format esm,cjs",
+    "build": "tsup",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -36,7 +36,6 @@
     "prettier": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "rimraf": "^3.0.2",
     "tsup": "^4.11.2",
     "typescript": "^4.3.2",
     "vite": "^2.3.7"
