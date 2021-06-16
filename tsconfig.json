@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "module": "ES2020",
+    "target": "ES2019",
+    "declaration": true,
+    "declarationDir": "dist/types/",
     "strict": true,
     "esModuleInterop": true,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "outDir": "dist/cjs/"
+    "moduleResolution": "Node"
   },
   "files": ["./src/index.ts"]
 }
