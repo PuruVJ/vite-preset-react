@@ -1,6 +1,6 @@
 # vite-preset-react
 
-An all in one preset for writing React apps with the [vite](https://github.com/vitejs/vite) bundler.
+An all in one opinionated preset for writing React apps with the [vite](https://github.com/vitejs/vite) bundler.
 
 Features:
 
@@ -45,6 +45,7 @@ export default defineConfig({
 | ---------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------- |
 | `removeDevtoolsInProd` | `boolean` | `false` | Removes React Devtools in production build                                                        |
 | `injectReact`          | `boolean` | `true`  | Injects `import React from 'react'` in every JS file to avoid importing it in every file manually |
+| `reactRefreshOptions` | `Options` | `undefined` | Options to pass to the underlying `@vitejs/plugin-react-refresh`. [See here](https://www.npmjs.com/package/@vitejs/plugin-react-refresh) |
 
 ## Using in official starter templates
 
@@ -67,6 +68,10 @@ yarn add -D vite-preset-react
 3. If you're using `react-ts` template, open `tsconfig.json`, and change `jsx` field to `preserve`.
 
 There!! You're all set!
+
+## Using with Preact
+
+Theoretically, this package should work well with preact. However, it's highly recommended to use the official [@preactjs/preset-vite](https://www.npmjs.com/package/@preact/preset-vite).
 
 ## Errors
 
