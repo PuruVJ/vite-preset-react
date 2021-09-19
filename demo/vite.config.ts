@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import react from "../src/index";
+import { defineConfig } from 'vite';
+import react from '../src/index';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react({ removeDevtoolsInProd: true, injectReact: false })],
+  plugins: [react({ removeDevtoolsInProd: true, injectReact: true })],
 });
