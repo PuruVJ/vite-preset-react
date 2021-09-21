@@ -1,20 +1,20 @@
-import { Plugin } from "vite";
+import type { Plugin } from 'vite';
 
-export interface reactDevtoolsPluginOptions {
+export interface ReactDevtoolsPluginOptions {
   removeInProd?: boolean;
 }
 
 export function reactDevtoolsPlugin({
   removeInProd = false,
-}: reactDevtoolsPluginOptions = {}): Plugin {
+}: ReactDevtoolsPluginOptions = {}): Plugin {
   const plugin: Plugin = {
-    name: "react:devtools",
+    name: 'react:devtools',
 
     // Ensure that we resolve before everything else
-    enforce: "pre",
+    enforce: 'pre',
 
     // Run only on build
-    apply: "build",
+    apply: 'build',
 
     transformIndexHtml(code) {
       if (removeInProd) {
@@ -22,7 +22,7 @@ export function reactDevtoolsPlugin({
           html: code,
           tags: [
             {
-              injectTo: "body",
+              injectTo: 'body',
               tag: `script`,
               children: `if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') { window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};};`,
             },

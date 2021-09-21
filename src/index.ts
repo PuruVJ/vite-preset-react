@@ -1,6 +1,6 @@
 import type { Options } from '@vitejs/plugin-react-refresh';
 import reactRefresh from '@vitejs/plugin-react-refresh';
-import { Plugin } from 'vite';
+import type { Plugin } from 'vite';
 import { reactDevtoolsPlugin } from './devtools';
 
 type ReactPresetPlugin = {
