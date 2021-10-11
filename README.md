@@ -4,8 +4,7 @@ An all in one opinionated preset for writing React apps with the [vite](https://
 
 Features:
 
-- Sets up Hot Module Replacement via [@vitejs/plugin-react-refresh](https://www.npmjs.com/package/@vitejs/plugin-react-refresh)
-- Automatically injects `React` into your components, so you don't have to `import React from 'react'` in every file.
+- Sets up Hot Module Replacement & Automatic JSX runtime(No need for `import React from 'react'`) via [@vitejs/plugin-react](https://www.npmjs.com/package/@vitejs/plugin-react-refresh)
 - Remove devtools in production if needed
 
 ## Installation
@@ -21,8 +20,8 @@ yarn add -D vite-preset-react
 Enhance your vite config with the React preset plugin in your `vite.config.ts` or `vite.config.js`:
 
 ```js
-import { defineConfig } from "vite";
-import react from "vite-preset-react";
+import { defineConfig } from 'vite';
+import react from 'vite-preset-react';
 
 export default defineConfig({
   plugins: [react()],
@@ -41,17 +40,17 @@ export default defineConfig({
 
 ### Available options
 
-| Option                 | Type      | Default | Description                                                                                       |
-| ---------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------- |
-| `removeDevtoolsInProd` | `boolean` | `false` | Removes React Devtools in production build                                                        |
-| `injectReact`          | `boolean` | `true`  | Injects `import React from 'react'` in every JS file to avoid importing it in every file manually |
-| `reactRefreshOptions` | `Options` | `undefined` | Options to pass to the underlying `@vitejs/plugin-react-refresh`. [See here](https://www.npmjs.com/package/@vitejs/plugin-react-refresh) |
+| Option                 | Type      | Default     | Description                                                                                                              |
+| ---------------------- | --------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `removeDevtoolsInProd` | `boolean` | `false`     | Removes React Devtools in production build                                                                               |
+| `injectReact`          | `boolean` | `true`      | Injects `import React from 'react'` in every JS file to avoid importing it in every file manually                        |
+| `reactPluginOptions`   | `Options` | `undefined` | Options to pass to the underlying `@vitejs/plugin-react`. [See here](https://www.npmjs.com/package/@vitejs/plugin-react) |
 
 ## Using in official starter templates
 
 If you are using the official `react` or `react-ts` template, and wanna switch to this one, follow this:
 
-1. Remove `@vitejs/plugin-react-refresh` from `package.json`.
+1. Remove `@vitejs/plugin-react` from `package.json`.
 
 2. Install this preset:
 
@@ -75,18 +74,7 @@ Theoretically, this package should work well with preact. However, it's highly r
 
 ## Errors
 
-## Identifier 'React' has already been declared
-
-This error occurs when manually import `React` in a file, with the config option `injectReact` set to `true`.
-
-Solution would be to remove the import if it is the only file in the whole codebase importing `React`.
-Or you can set `injectReact` option to `false`. This will suppress this error and allow you to import `React` in every file.
-
-## Uncaught ReferenceError: React is not defined
-
-This error arises when you have the option `injectReact` set to `false`, but you're not importing `React` in some of your files. Solution would be to set this option to `true`; Or put an `import React from 'react'` statement in every file containing JSX code.
-
-## Not importing React doesn't allow JSX in TSX files
+### Not importing React doesn't allow JSX in TSX files
 
 If you're getting red squiggles under your JSX, follow this:
 
@@ -94,6 +82,12 @@ If you're getting red squiggles under your JSX, follow this:
 2. Set the `jsx` option to `preserve`.
 
 There, that should fix it.
+
+## Differences from @vitejs/plugin-react
+
+When would you want to use this plugin instead of the official `@vitejs/plugin-react`? Well, the answer is: **If you don't need control over whether React devtools are removed or not**
+
+Yep, that's pretty much it. Earlier, when the official react plugin was `@vitejs/plugin-react-refresh`, this plugin would enable automatic JSX, so you wouldn't have import React in every file. Now with the new `@vitejs/plugin-react` providing the much better automatic JSX runtime, eliminating the need for `vite-preset-react` altogether, unless you need to remove react devtools.
 
 ## License
 
