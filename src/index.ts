@@ -1,5 +1,5 @@
-import type { Options } from '@vitejs/plugin-react-refresh';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import type { Options } from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react';
 import type { Plugin } from 'vite';
 import { reactDevtoolsPlugin } from './devtools';
 
@@ -10,27 +10,18 @@ type ReactPresetPlugin = {
   /** Inject `React` into every file to not declare `import React from 'react';` everywhere */
   injectReact?: boolean;
 
-  /** Pass options as-it-is to @vitejs/plugin-react-refresh */
-  reactRefreshOptions?: Options;
+  /** Pass options as-it-is to @vitejs/plugin-react */
+  reactPluginOptions?: Options;
 };
 
 export default function reactPlugin({
   removeDevtoolsInProd = false,
   injectReact = true,
-  reactRefreshOptions,
+  reactPluginOptions: reactRefreshOptions,
 }: ReactPresetPlugin = {}): Plugin[] {
   return [
-    {
-      name: 'react:config',
-      config() {
-        return {
-          esbuild: {
-            ...(injectReact ? { jsxInject: `import React from 'react'` } : {}),
-          },
-        };
-      },
-    },
-    reactRefresh(reactRefreshOptions),
+    // @ts-ignore
+    react({ jsxRuntime: injectReact ? 'automatic' : 'classic', ...reactRefreshOptions }),
     reactDevtoolsPlugin({ removeInProd: removeDevtoolsInProd }),
   ];
 }
