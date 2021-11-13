@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite demo",
     "build": "tsup",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "react",
