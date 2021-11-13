@@ -1,6 +1,6 @@
 {
   "name": "vite-preset-react",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "React preset for the vite bundler",
   "type": "module",
   "main": "dist/index.cjs",
@@ -17,7 +17,7 @@
     "vite-preset"
   ],
   "author": "Puru Vijay (https://puruvj.dev)",
-  "repository": "puruvj/vite-preset-react",
+  "repository": "git+https://github.com/PuruVJ/vite-preset-react.git",
   "license": "MIT",
   "files": [
     "dist/"
